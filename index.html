@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Asteroids</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+        canvas {
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+   <h1>This is an HTML canvas</h1>
+   <canvas id="asteroids" width="400" height="400"></canvas>
+
+<script>
+    const canvas = document.getElementById('asteroids');
+    const context = canvas.getContext('2d');
+
+    context.strokeStyle = 'lightgrey';
+    context.fillStyle = 'dimgrey';
+    context.lineWidth = 5;
+    context.rect(75, 50, canvas.width - 150, canvas.height - 100);
+    context.stroke();
+    context.fill();
+
+    context.font = '34px Arial';
+    context.strokeStyle = '#f22';
+    context.fillStyle = '#faa';
+    context.lineWidth = .75;
+    context.textAlign = 'center';
+    let msg = '2D Drawing';
+    context.fillText(msg, canvas.width / 2, 100);
+    context.strokeText(msg, canvas.width / 2, 100);
+
+    let msg2 = 'it\'s quite easy!';
+    context.font = '24px Arial';
+    context.fillText(msg2, canvas.width / 2, 330);
+    context.strokeText(msg2, canvas.width /2 ,330);
+
+    context.strokeStyle = '#fff';
+    context.lineWidth = 2;
+    context.beginPath();
+    context.arc(200, 140, 20, 0, Math.PI * 2);
+    context.moveTo(200, 165);
+    context.lineTo(200, 220);
+    context.stroke();
+
+</script>
+
+</body>
+</html>
