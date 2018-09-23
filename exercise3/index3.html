@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise3</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="drawing.js"></script>
+</head>
+
+<body>
+
+    <h1>Pac-man</h1>
+    <canvas id="pacmania" width="400" height="400"></canvas>
+
+    <script>
+        const context = document.getElementById('pacmania').getContext('2d');
+        drawGrid(context);
+        // drawPacman(200, 200, 150, Math.random(), 'lightgreen');
+
+        const minRadius = 5;
+        const maxRadius = 50;
+
+        do {
+            let x = context.canvas.width * Math.random();
+            let y = context.canvas.height * Math.random();
+            let radius = minRadius + (maxRadius - minRadius) * Math.random();
+            drawPacman(context, x, y, radius, Math.random());
+        }
+        while(Math.random() < .9);
+    </script>
+</body>
+
+</html>
