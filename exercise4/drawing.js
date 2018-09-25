@@ -49,7 +49,7 @@ function drawPacman(ctx, x, y, radius, mouthSize) {
     ctx.restore();
 }
 
-function drawShip(ctx, x, y, radius, options) {
+function drawShip(ctx, radius, options) {
     options = options || {};
     ctx.save();
     // optionally draw a guide showing the collision radius
@@ -58,7 +58,7 @@ function drawShip(ctx, x, y, radius, options) {
         ctx.fillStyle = 'rgba(0, 0, 0, .25)';
         ctx.lineWidth = .5;
         ctx.beginPath();
-        ctx.arc(x, y, radius, 0, 2 * Math.PI);
+        ctx.arc(0, 0, radius, 0, 2 * Math.PI);
         ctx.stroke();
         ctx.fill();
     }
@@ -69,14 +69,14 @@ function drawShip(ctx, x, y, radius, options) {
     let angle = (options.angle || .5 * Math.PI) / 2;
     // draw the ship in three lines
     ctx.beginPath();
-    ctx.moveTo(x + radius, y);
+    ctx.moveTo(radius, 0);
     ctx.lineTo(
-        x + Math.cos(Math.PI - angle) * radius,
-        y + Math.sin(Math.PI - angle) * radius
+        Math.cos(Math.PI - angle) * radius,
+        Math.sin(Math.PI - angle) * radius
     );
     ctx.lineTo(
-        x + Math.cos(Math.PI + angle) * radius,
-        y + Math.sin(Math.PI + angle) * radius
+        Math.cos(Math.PI + angle) * radius,
+        Math.sin(Math.PI + angle) * radius
     );
     ctx.closePath();
     ctx.fill();

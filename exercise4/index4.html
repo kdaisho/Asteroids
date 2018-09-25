@@ -18,12 +18,20 @@
     <script>
         const context = document.getElementById('asteroids').getContext('2d');
         drawGrid(context);
-        drawShip(context, 200, 200, 150, {guide: true});
-        drawShip(context, 75, 75, 50, {stroke: 'gold', fill: 'purple'});
-        drawShip(context, 325, 325, 50, {angle: .8 * Math.PI, guide: true});
-        drawShip(context, 75, 325, 50, {angle: .5 * Math.PI, guide: true});
-        drawShip(context, 325, 75, 50, {lineWidth: 8, fill: 'blue'});
-
+        context.lineWidth = .5;
+        context.strokeStyle = '#fff';
+        let x, y, angle = 0;
+        let w = context.canvas.width, h = context.canvas.height;
+        for (y = h/20; y < h; y += h/10) {
+            for (x = w/20; x < w; x += w/10) {
+                context.save();
+                context.translate(x, y);
+                context.rotate(angle);
+                drawShip(context, w/30, {guide: true, lineWidth: 1});
+                angle = (angle + .0075 * Math.PI);
+                context.restore();
+            }
+        }
     </script>
 </body>
 
