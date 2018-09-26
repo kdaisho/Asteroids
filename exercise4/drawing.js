@@ -51,10 +51,13 @@ function drawPacman(ctx, x, y, radius, mouthSize) {
 
 function drawShip(ctx, radius, options) {
     options = options || {};
+    let angle = (options.angle || .5 * Math.PI) / 2;
+    console.log('ANGLE:', angle);
+    // this is new
+    let curve = options.curve || .5;
     ctx.save();
-    // optionally draw a guide showing the collision radius
     if (options.guide) {
-        ctx.strokeStyle = '#fff';
+        ctx.strokeStyle = 'white';
         ctx.fillStyle = 'rgba(0, 0, 0, .25)';
         ctx.lineWidth = .5;
         ctx.beginPath();
@@ -62,22 +65,20 @@ function drawShip(ctx, radius, options) {
         ctx.stroke();
         ctx.fill();
     }
-    // set some default values
     ctx.lineWidth = options.lineWidth || 2;
-    ctx.strokeStyle = options.stroke || '#fff';
-    ctx.fillStyle = options.fill || '#000';
-    let angle = (options.angle || .5 * Math.PI) / 2;
-    // draw the ship in three lines
+    ctx.strokeStyle = options.stroke || 'white';
+    ctx.fillStyle = options.fill || 'black';
     ctx.beginPath();
     ctx.moveTo(radius, 0);
     ctx.lineTo(
         Math.cos(Math.PI - angle) * radius,
         Math.sin(Math.PI - angle) * radius
     );
-    ctx.lineTo(
+    // here we have added a control point based on the curve variable
+    ctx.quadraticCurveTo(radius * curve - radius, 0,
         Math.cos(Math.PI + angle) * radius,
         Math.sin(Math.PI + angle) * radius
-    );
+    )
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
