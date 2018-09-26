@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Exercise4-9</title>
+    <title>Exercise4-10</title>
     <link rel="stylesheet" href="../styles.css">
     <script src="drawing.js"></script>
 </head>
@@ -18,8 +18,16 @@
     <script>
         const context = document.getElementById('asteroids').getContext('2d');
         drawGrid(context);
-        context.translate(200, 200);
-        drawShip(context, 150, {curve: Math.random(), guide: true});
+        let c1 = 0, c2 = 0;
+        for (c1 = .1; c1 < 1; c1 += .2) {
+            for (c2 = .1; c2 < 1; c2 += .2) {
+                context.save();
+                context.translate(context.canvas.width * c1, context.canvas.height * c2);
+                context.rotate(-Math.PI/2);
+                drawShip(context, context.canvas.width / 12, {curve1: c1, curve2: c2, guide: true});
+                context.restore();
+            }
+        }
     </script>
 </body>
 
