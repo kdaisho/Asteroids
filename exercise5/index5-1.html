@@ -12,19 +12,20 @@
 
 <body>
 
-    <h1>Drawing a spaceship</h1>
+    <h1>Drawing asteroids</h1>
     <canvas id="asteroids" width="400" height="400"></canvas>
 
     <script>
         const context = document.getElementById('asteroids').getContext('2d');
         drawGrid(context);
         let segments = 1;
+        const noise = .2;
         for (let x = .25; x < 1; x += .5) {
             for (let y = .25; y < 1; y += .5) {
                 segments += 2;
                 context.save();
                 context.translate(context.canvas.width * x, context.canvas.height * y);
-                drawAsteroid(context, 60, segments, {guide: true});
+                drawAsteroid(context, 60, segments, {guide: true, noise: noise});
                 context.restore();
             }
         }

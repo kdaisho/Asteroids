@@ -87,7 +87,7 @@ function drawAsteroid(ctx, radius, segments, options) {
     ctx.beginPath();
     for (let i = 0; i < segments; i++) {
         ctx.rotate(2 * Math.PI / segments);
-        ctx.lineTo(radius, 0);
+        ctx.lineTo(radius + radius * options.noise * (Math.random() - .5), 0);
     }
     ctx.closePath();
     ctx.fill();
