@@ -12,20 +12,25 @@
 
 <body>
 
-    <h1>Drawing asteroids: 5-2</h1>
+    <h1>Drawing asteroids: 5-3</h1>
     <canvas id="asteroids" width="400" height="400"></canvas>
 
     <script>
         const context = document.getElementById('asteroids').getContext('2d');
         drawGrid(context);
         let segments = 15;
-        const noise = .4;
-        for (let x = .1; x < 1; x += .2) {
-            for (let y = .1; y < 1; y += .2) {
+        let noise = 0;
+        const shape = [];
+        for (let i = 0; i < segments; i++) {
+            shape.push(2 * (Math.random() - .5));
+        }
+        for (let y = .1; y < 1; y += .2) {
+            for (let x = .1; x < 1; x += .2) {
                 context.save();
                 context.translate(context.canvas.width * x, context.canvas.height * y);
-                drawAsteroid(context, context.canvas.width / 12, segments, {guide: true, noise: noise});
+                drawAsteroid(context, context.canvas.width / 16, shape, {guide: true, noise: noise});
                 context.restore();
+                noise += .025;
             }
         }
     </script>

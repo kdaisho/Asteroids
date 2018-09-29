@@ -79,15 +79,16 @@ function drawShip(ctx, radius, options) {
     ctx.restore();
 }
 
-function drawAsteroid(ctx, radius, segments, options) {
+function drawAsteroid(ctx, radius, shape, options) {
     options = options || {};
     ctx.strokeStyle = options.stroke || 'white';
     ctx.fillStyle = options.fill || 'black';
     ctx.save();
     ctx.beginPath();
     for (let i = 0; i < segments; i++) {
-        ctx.rotate(2 * Math.PI / segments);
-        ctx.lineTo(radius + radius * options.noise * (Math.random() - .5), 0);
+        ctx.rotate(2 * Math.PI / shape.length);
+        // ctx.lineTo(radius + radius * options.noise * (Math.random() - .5), 0);
+        ctx.lineTo(radius + radius * options.noise * shape[i], 0);
     }
     ctx.closePath();
     ctx.fill();
