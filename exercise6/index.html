@@ -35,6 +35,9 @@
             if (y > context.canvas.height) {
                 yspeed *= -1;
             }
+            if (x <= 0 || x >= context.canvas.width) {
+                x = (x + context.canvas.width) % context.canvas.width;
+            }
         }
 
         function draw(ctx) {
