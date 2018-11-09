@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercise6</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="drawing.js"></script>
+</head>
+
+<body>
+
+    <h1>Animation</h1>
+    <canvas id="asteroids" width="300" height="300"></canvas>
+
+    <script>
+        const context = document.getElementById('asteroids').getContext('2d');
+        context.strokeStyle = '#fff';
+        context.lineWidth = 1.5;
+        var x = 0, y = context.canvas.height / 2;
+
+        function frame() {
+            context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+            draw(context);
+            update();
+        }
+
+        function update() {
+            x += 1;
+        }
+
+        function draw(ctx) {
+            drawGrid(ctx);
+            ctx.beginPath();
+            ctx.arc(x, y, 40, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        setInterval(frame, 1000 / 60);
+    </script>
+</body>
+
+</html>
