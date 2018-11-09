@@ -20,6 +20,7 @@
         context.strokeStyle = '#fff';
         context.lineWidth = 1.5;
         var x = 0, y = context.canvas.height / 2;
+        var yspeed = 0, gravity = .1;
 
         function frame() {
             context.clearRect(0, 0, context.canvas.width, context.canvas.height);
@@ -29,6 +30,11 @@
 
         function update() {
             x += 1;
+            y += yspeed;
+            yspeed += gravity;
+            if (y > context.canvas.height) {
+                yspeed *= -1;
+            }
         }
 
         function draw(ctx) {
